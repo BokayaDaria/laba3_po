@@ -2,30 +2,47 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build-and-test:
-    runs-on: ${{ matrix.os }}
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17
-          distribution: temurin
-          cache: gradle                     
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Build project
-        run: bash ./gradlew build -x test --no-daemon
+      - name: Make gradlew executable (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: chmod +x gradlew
+
+      - name: Create app.properties
+        run: |
+          echo "git.search.keywords=Initialization,Fill,Hotfix" > app.properties
+          echo "output.format=JSON" >> app.properties
+          echo "output.file=git-report.json" >> app.properties
+
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
 
       - name: Run tests
-        run: bash ./gradlew test --no-daemon
+        run: ./gradlew test --no-daemon
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: git-log-analyzer-${{ matrix.os }}
+          path: build/libs/*.jar
