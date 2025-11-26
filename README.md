@@ -1,3 +1,5 @@
+[![CI](https://github.com/BokayaDaria/laba3_po/actions/workflows/ci.yml/badge.svg)](https://github.com/BokayaDaria/laba3_po/actions/workflows/ci.yml)
+
 **Анализатор логов веб-сервера Nginx** — лабораторная работа №3  
 Автор: **Бокая Дарья**  
 Дата: ноябрь 2025
@@ -32,7 +34,7 @@
 
 - mkdir nginx-project
 - cd nginx-project
-- git clone 
+- git clone https://github.com/BokayaDaria/laba3_po.git
 - cd nginx-log-analyzer
 
 # 2. Создаём папку для логов и открываем файл в Блокноте
