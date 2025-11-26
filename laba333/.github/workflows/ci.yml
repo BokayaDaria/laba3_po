@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches: [ main ]
@@ -21,13 +22,10 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
-          cache: gradle
-        working-directory: lab333
+          cache: gradle                     
 
       - name: Build project
         run: bash ./gradlew build -x test --no-daemon
-        working-directory: lab333
 
       - name: Run tests
         run: bash ./gradlew test --no-daemon
-        working-directory: lab333
