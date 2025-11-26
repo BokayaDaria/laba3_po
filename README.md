@@ -35,7 +35,7 @@
 - mkdir nginx-project
 - cd nginx-project
 - git clone https://github.com/BokayaDaria/laba3_po.git
-- cd nginx-log-analyzer
+- cd laba3_po
 
 # 2. Создаём папку для логов и открываем файл в Блокноте
 
