@@ -1,0 +1,30 @@
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Конфигурация приложения 
+src/main/resources/app.properties
+src/test/resources/app.properties
+
+# Файл отчёта
+report.json
+
+# Локальные настройки Gradle
+local.properties
